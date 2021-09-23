@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    /* CSS는 Cascading(폭포가 떨어지다) Style Sheet의 약자 */
+    /* Author style -> User Style -> Brower  */
+    /*
+    1.<tag style='구문'>  - inline
+    2.<style> <style> - internal
+    3.<link rel='stylesheet' href='style.cc'> - external
+
+    * selector 기본 구조
+    Universal -> *
+    type -> Tag
+    id -> #id
+    class -> .class
+    state -> :
+    Attribute -> []
+
+    ex)
+    *
+    p.demo
+    div#app
+    a[href="https://www.naver.com]
+    button:hover
+
+    selector {
+      property: value;
+    }
+    */
+  </style>
+
+  <h2>Background</h2>
+  <style>
+    #background {
+      width: 100px;
+      height: 100px;
+      background-color:blueviolet;
+      opacity: 0.3; /* 투명도 0~1 */
+    }
+
+    #background-image {
+      background-color: yellow;
+      background-image: url('background.jpg');
+      width: 1000px;
+      height: 1000px;
+      background-repeat:space repeat; /* 두개값 넣을 경우 가로 | 세로 */
+      /*
+      no-repeat: 반복x
+      repeat: 반복
+      repeat-x: x축 반복
+      repeat-y: y축 반복
+      space: 배경이 잘리지 않는선에서 반복
+      round: 배경이 요소크기보다 작을 경우 크기 맞춰줌, 아닐경우 repeat
+      */
+
+      background-position: right bottom; /* x | y */
+      background-attachment:local;
+      /*
+      scroll: 배경 고정(default)
+      fixed: 배경을 뷰포트에 대해 고정
+      local: 배경을 element 컨텐츠에 대해 고정
+      https://mdn.github.io/learning-area/css/styling-boxes/backgrounds/background-attachment.html
+      */
+
+      /*
+      shorthand(속기)
+      background: yellow url('background.jpg') repeat right top;
+      */
+    }
+  </style>
+  <div id='background'></div>
+  <div id='background-image'></div>
+
+  <hr>
+  <h2>Border Style</h2>
+  <style>
+    #border {
+      /*
+      border-top-style: dotted;
+      border-right-style: solid;
+      border-bottom-style: dotted;
+      border-left-style: solid;
+      이런식으로 개별로 특정 방향만 줄수도 있음
+      */
+      border-style: outset; /* 위 오른쪽 아래 왼쪽 // 0시부터 시계방향 */
+      /*
+      dotted: 여러개의 점으로된 경계
+      dashed: 여러개의 선으로된 경계
+      solid: 하나의 선으로된 경계
+      double: 두개의 선을 겹친 경계
+      groove: 테두리가 파인것처럼 그림
+      ridge: 테두리가 튀어나온것처럼 그림
+      inset: 요소가 파인것처럼 테두리를 그림
+      outset: 요소가 튀어나온것처럼 테두리를 그림
+      */
+
+      border-width: 3px; /* thick, thin, 1em 3px.. 등등 */
+      border-color: blue;
+      border-radius: 5px; /* 꼭지점 둥글게 */
+      /*
+      shorthand
+      border: 5px solid red;
+
+      번외 outline -> 경계선 바깥요소에 그려줌
+      outline-width, outline-style, outline-color 모두 사용법 같음
+      outline-offset: 15px; 경계선에서 15px 떨어트려 그림
+      */
+
+    }
+
+  </style>
+  <p id="border">Paragraph 태그</p>
+
+  <hr>
+  <h2>margin & padding</h2>
+  <style>
+
+
+    #margin > span:nth-child(1){
+      margin: 200px;
+      border: 2px solid black;
+    }
+
+    #margin > span:nth-child(2) {
+      margin: 20px 40px 50px 200px;
+      border: 2px solid black
+    }
+    /* 특정 조건을 성립해야만 마진 상쇄된다  */
+    #margin > h1 {
+      margin: 0 0 50px 0;
+    }
+
+    #margin > h2 {
+      margin: 20px 0 0 0;
+    }
+
+    #padding > div:nth-child(1) {
+      width: 300px;
+      padding: 50px;
+      background-color: yellow;
+    }
+
+    #padding > div:nth-child(2) {
+      width: 300px;
+      padding: 50px;
+      box-sizing: border-box;
+      background-color: teal;
+      /* box-sizing이 width크기를 보존시키고 안에 요소 크기를 조절  */
+    }
+  </style>
+  <div id='margin'>
+    <span id='margin1'>margin1</span>
+    <span id='margin2'>margin2</span>
+    <h1>h1 tag</h1>
+    <h2>h2 tag</h2>
+  </div>
+
+  <div id="padding">
+    <div>300px 너비</div>
+    <div>300px 너비, box-sizing 적용</div>
+  </div> <!-- padding, margin, border, content로 이루어진걸 박스 모델링이라고 부름 -->
+
+<!-- ------------------------------------------------------------------------------------------------ --> 
+  <hr>
+  <h2>Block Level, Inline Level</h2>
+  <style>
+    #level > div, #level > span {
+      width: 40px;
+      height: 40px;
+      margin: 20px;
+    }
+
+    #level > div {
+      background-color: red;
+    }
+
+    #level > span {
+      background-color: yellow;
+      display: inline; /* 수정해보기  */
+    }
+    /*
+    block : 무조건 한줄 점유, 영역만큼 점유
+    inline : content/text 크기만큼 점유, margin, padding, width, height가 ui상에서 적용 x
+    inline-block : 두개 짬뽕이다. width, height, maring, padding 적용 ok, 그외 inline처럼 작동
+    */
+  </style>
+
+  <div id="level">
+    <!-- Block tag -->
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <!-- Inline tag -->
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+  </div>
+
+<!-- ------------------------------------------------------------------------------------------------ -->
+  <hr>
+  <h2>텍스트</h2>
+  <style>
+    #text > h1 {
+      background-color: blue;
+      color: white;
+      text-align: center; /* left center right justify(기본 왼쪽정렬, 글자를 동일한 폭을 가지게 뻗게함. 잡지, 신문 등에 사용) */
+    }
+
+    #text > h2 {
+      direction: rtl;
+      unicode-bidi: bidi-override;
+    }
+
+    #text > h3 {
+      text-decoration: overline; /* overline line-through underline */
+      text-transform: uppercase; /* uppercse lowercase capitalize(각단어 첫알파벳만 대문자) */
+      text-indent: 10px; /* 첫줄 들여 쓰기 */
+      letter-spacing: 3px; /* 문자사이 공백 */
+      line-height: 1.8; /* 각줄 높이 */
+      word-spacing: 10px; /* 단어와 간격 */
+    }
+
+    #text > span {
+      vertical-align: middle; /* top middle bottom */
+    }
+
+    #text > button {
+      width:100px;
+      height: 100px;
+    }
+
+    #text > p {
+      white-space: nowrap; /* 공백에 대한 줄바꿈처리지정 */
+    }
+
+    #text > h4 {
+      text-shadow: 2px 2px 5px red; /* 수평 수직 흐릿한정도 */
+    }
+  </style>
+  <div id="text">
+    <h1>안녕하세요</h1>
+    <h2>글자를 거꾸로 출력.</h2>
+    <h3>Text decoration</h3>
+    <span>수직 정렬</span><button>버튼</button>
+    <p>공백 공간 처리방식을 지정해주세요.
+      공백 공간 처리방식을 지정해주세요.
+      공백 공간 처리방식을 지정해주세요.
+      공백 공간 처리방식을 지정해주세요.
+    </p>
+    <h4>Text shadow Effect</h4>
+  </div>
+
+<!-- ------------------------------------------------------------------------------------------------ -->
+  <hr>
+  <h2>Font</h2>
+  <style>
+    /*
+    자주쓰는 글꼴
+    Serif: 끝을 뾰족하게 쓴 글꼴
+    Sans-serif: 직각으로 바르게쓸 글꼴
+    Monospace: 폭이 같은 기계적인 글꼴
+    Cursive: 필기체
+    Fantasy: 판타지 글꼴
+    */
+    #font > p {
+      font: italic small-caps bold 30px/12px Georgia, serif;
+      /* font-style, font-variant, font-weight font-size/line-height, font-family */
+    }
+  </style>
+  <div id='font'>
+    <p>
+      폰트를 바꿔볼까요
+    </p>
+  </div>
+<!-- ------------------------------------------------------------------------------------------------ -->
+  <hr>
+  <h2>position</h2>
+  <style>
+    #position > div {
+      width: 10px;
+      height: 10px;
+      margin: 10px;
+      background-color: red;
+    }
+
+    #position > div.box {
+      background-color: blue;
+      left: 10px;
+      top: 10px;
+      position: relative; /* 다양하게 바꿔보기 */
+    }
+
+    #position {
+      background: yellow;
+      width: 400px;
+      height: 400px;
+      left: 20px;
+      top: 20px;
+      position: static;
+      /*
+      static(default): 위치 지정 안할때 사용
+      relative: static위치로부터 위치를 상대적으로 변경할때
+      absolute: 원래 위치와 상관없이 좌표로 위치 지정 가능, 부모 기준으로 위치 결정
+      fixed: 원래위치와 상관없이 지정 가능, 브라우저에 대해 좌표를 지정, 스크롤에 영향을 받지않고 고정된 위치를 가짐
+      sticky: 스크롤의 특정 지점에 도달하면 fixed처럼 고정된 위치를 가짐
+      https://jsfiddle.net/daehwan/xk0od1av/28/ : fixed, sticky 차이 이해하기
+      */
+    }
+  </sty>
+  <div id="position">
+    <!-- div * 10-->
+    <div></div>
+    <div class="box"></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+
+  <!-- ----------------------------------------------------------------------- -->
+  <hr>
+  <h2>float</h2>
+  <style>
+    #float img {
+      float: left;
+      /*
+      글과 사진를 조화롭게 배치할때 유용
+      left, right, center, initial, inherit
+      */
+    }
+  </style>
+  <div id="float">
+    <p>
+      <img src="https://images.unsplash.com/photo-1537151625747-768eb6cf92b2?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8ZG9nfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60" alt="dog" height=100px, width=100px>
+      어떠한글을 쓰고 있습니다 어떠한글을 쓰고 있습니다 어떠한글을 쓰고 있습니다
+    </p>
+  </div>
+
+
+  <!-- ----------------------------------------------------------------------- -->
+  <hr>
+  <h2>Flexbox</h2>
+  <!-- flexbox는 float의 발전형태, main axis를 기준으로 cross axis를 정함 -->
+  <style>
+    /* https://d2.naver.com/helloworld/8540176 */
+    #flexbox {
+      background-color: beige;
+      height: 50vh;
+      width: 50vw;
+      display:flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      
+      justify-content:flex-end;
+      align-items:center;
+      align-content: flex-end;
+      /*
+      
+      display	-> Flex Container를 정의 | flex: Block 특성의 Flex Container를 정의 | inline-flex: inline 특성의 Flex Container를 정의
+      flex-flow -> flex-direction와 flex-wrap의 단축 속성 | flex-flow: 주축 여러줄 묶음
+      flex-direction ->	Flex Items의 주 축(main-axis)을 설정 | row, column, reverse-row, reverse-column
+      flex-wrap ->	Flex Items의 여러 줄 묶음(줄 바꿈) 설정 | wrap: items를 여러줄로 묶음, nowrap: items를 한줄로 표시, wrap-reverse
+      justify-content ->	주 축(main-axis)의 정렬 방법을 설정 | flex-start: items의 시작점으로 정렬, flex-end: items의 끝점으로 정렬, 
+        center: items를 가운데 정렬, space-between: 시작 item은 시작점에,
+        마지막 item은 끝에 정렬하고 나머지는 고르게 정렬, space-around: items를 균등한 여백을 포함해 정렬 
+      align-content ->	교차 축(cross-axis)의 정렬 방법을 설정(2줄 이상일 경우 align-items보다 우선됌)
+        | stretch: Container의 교차 축을 채우기 위해 Items를 늘림(default), flex-start: items를 각 줄의 시작점으로 정렬,
+        flex-end: items를 각 줄 끝점으로 정렬, center: items를 가운데 정렬, space-between: 시작 item은 시작점에,
+        마지막 item은 끝에 정렬하고 나머지는 고르게 정렬, space-around: items를 균등한 여백을 포함해 정렬 
+      align-items ->	교차 축(cross-axis)에서 Items의 정렬 방법을 설정(1줄) | stretch: Container의 교차 축을 채우기 위해 Items를 늘림(default),
+        flex-start	Items를 각 줄의 시작점(flex-start)으로 정렬, flex-end	Items를 각 줄의 끝점(flex-end)으로 정렬,
+        center	Items를 가운데 정렬, baseline	Items를 문자 기준선에 정렬
+      
+      *Flex Items
+      order:	Flex Item의 순서를 설정 | order: 우선순위(기본 전부 0으로 되어있음)
+      flex:	flex-grow, flex-shrink, flex-basis의 단축 속성 | flex: 증가너비 감소너비 기본너비;
+      flex-grow:	Flex Item의 증가 너비 비율을 설정
+      flex-shrink:	Flex Item의 감소 너비 비율을 설정
+      flex-basis:	Flex Item의 (공간 배분 전) 기본 너비 설정
+      align-self:	교차 축(cross-axis)에서 Item의 정렬 방법을 설정 
+
+      */
+    }
+
+    #flexbox > div.item {
+      width: 100px;
+      height: 100px;
+    }
+
+    #flexbox > div.item1 {
+      background-color:red;
+    }
+    #flexbox > div.item2 {
+      background-color:orange;
+    }
+    #flexbox > div.item3 {
+      background-color:yellow;
+    }
+    #flexbox > div.item4 {
+      background-color:green;
+    }
+    #flexbox > div.item5 {
+      background-color:blue;
+      display: flex;
+      flex-direction: column;
+      align-content: flex-end;
+
+    }
+
+    .inner-item {
+      background-color: brown;
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+  <!-- div#flexbox>div.item.item${$}*5-->
+  <div id="flexbox">
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item3">3</div>
+    <div class="item item4">4</div>
+    <div class="item item5">
+      <div class="inner-item">1</div>
+      <div class="inner-item">2</div>
+      <div class="inner-item">3</div>
+      <div class="inner-item">4</div>
+      <div class="inner-item">5</div>
+    </div>
+  </div>
+
+<!-- ----------------------------------------------------------------------- -->
+<hr>
+<h2>::before ::after</h2>
+<style>
+  /*
+  : -> 가상 클래스 : 별도의 class를 지정하지 않아도 지정한것처럼 선택
+  :: -> 가상 요소 : 존재하지 않는 요소를 존재하는것처럼 선택
+
+  가상 클래스 종류
+  :first-child -> 첫번째 자식요소
+  :last-child -> 마지막 자식요소
+  :first-of-type -> 자식 중 처음으로 만난 해당 요소
+  :last-of-type -> 자식 중 가장 마지막에 해당하는 요소
+  :nth-child(an+k) -> an+k번째 자식 요소에 해당하는것(even, odd도 ok)
+  :nth-of-type(n) -> 자식 중 n번째 해당하는 것들
+  :nth-last-of-type(n) -> 자식요소중 뒤에서 n번째 해당하는 것들
+  :only-child: 자식을 하나만 갖고 있는 요소
+  :only-of-type: 같은 유형의 형제가 없는 경우
+  :not(가상클래스) -> 해당 가상클래스가 아닌 요소
+  :root -> 루트요소
+  :empty -> 컨텐츠가 없는 요소
+
+  가상요소 종류
+  ::first-line -> 요소의 텍스트에서 첫 줄에 스타일을 적용
+  ::first-leter -> 요소의 첫 번째 글자에 스타일을 적용
+  ::selection -> 요소의 텍스트에서 사용자가 드래그한 영역의 속성을 변경
+  ::placeholder -> Input 필드 힌트 텍스트에 스타일을 적용
+  ::before
+  ::after
+
+  ::before ::after와 함께 쓰이는 'content'는 가짜 속성
+  */
+  .before::before {
+    content: url('google.png');
+  }
+
+  .after::after {
+    content: url('google.png');
+  }
+</style>
+<div class="before">
+  google
+</div>
+<div class="after">
+  google
+</div>
+
+<!-- ----------------------------------------------------------------------- -->
+<hr>
+<h2>폰트 추가 & 아이콘 가져오기</h2>
+<!-- https://fonts.google.com/ -->
+<!-- https://fontawesome.com/ -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+  #font-style {
+    font-family: 'Indie Flower', cursive;
+    font-size: 40px;
+  }
+</style>
+<div id="font-style">
+  What a wonderful day!!
+</div>
+<i class="fab fa-facebook"></i>
+<i class="fas fa-camera"></i>
+<!-- https://fontawesome.com/how-to-use/on-the-web/referencing-icons/basic-use -->
+<!-- fas는 solid스타일 아이콘, fab은 brand 아이콘-->
+
+
+<!-- ----------------------------------------------------------------------- -->
+<hr>
+<h2>Bootstrap 간단 사용법</h2>
+<!-- 리소스가 무거워서 요즘 잘안씀.. 빨리빨리 개발해야 될 경우에 자주 쓰임, css 참고용으로.. -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+<button type="button" class='btn btn-primary btn-lg'>멋진 버튼</button>
+<div class="card" style="width: 18rem;">
+  <img src="google.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</body>
+</html>
