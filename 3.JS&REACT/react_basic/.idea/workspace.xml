@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2444f048-c000-4927-b7a6-3fc632ccf36d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/About.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/DisplayText.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react-todo/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../react-todo/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../react-todo/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/../react-todo/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/Counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/Counter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +52,7 @@
       <option name="presentableId" value="Default" />
       <updated>1633591726513</updated>
       <workItem from="1633591729076" duration="2893000" />
+      <workItem from="1633607136905" duration="3495000" />
     </task>
     <servers />
   </component>
@@ -76,5 +69,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

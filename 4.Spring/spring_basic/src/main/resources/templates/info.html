@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Info</title>
+</head>
+<body>
+<h1>회원정보</h1>
+<table border="1px">
+    <tr>
+        <th>아이디</th>
+        <th>비밀번호</th>
+        <th>닉네임</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="user: ${userList}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.password}"></td>
+        <td th:text="${user.nickname}"></td>
+        <td><button onclick="deleteUser(event)">삭제</button></td>
+    </tr>
+
+</table>
+<script>
+    function deleteUser(e) {
+        let btn = e.currentTarget
+        let tr = btn.parentElement.parentElement
+        let id = tr.querySelector('td:nth-child(1)').textContent
+
+        let form = document.createElement('form')
+        form.setAttribute('method', 'post')
+        form.setAttribute('action', '/delete')
+        let hiddenField = document.createElement('input')
+        hiddenField.setAttribute('type', 'hidden')
+        hiddenField.setAttribute('name', 'id')
+        hiddenField.setAttribute('value', id)
+        form.appendChild(hiddenField)
+        document.body.appendChild(form)
+        form.submit()
+    }
+</script>
+</body>
+</html>
