@@ -86,7 +86,7 @@ public class UserController {
     @PostMapping("/delete")
     public String deleteUser(HttpSession session, @RequestParam("id") String id) {
         userService.deleteUser(id);
-        if(session.getAttribute("id") == id) {
+        if(session.getAttribute("id") != null && session.getAttribute("id").equals(id)) {
             session.removeAttribute("id");
         }
         return "redirect:/info";
